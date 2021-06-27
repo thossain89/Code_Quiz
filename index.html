@@ -8,7 +8,19 @@
 </head>
 <body>
     <div id="container">
+       <button onclick="window.location.href='./Highscore.html'"id="viewHighscore">View Highscores</button>
+        <div Id='intro'>
+            
+           <h1><strong></strong>Code Quiz !!!</strong></h1> 
+           <br>
+           <p>This simple quiz tests your knowledge about Web Development</p>
+           <p>There are 6 questions and total time is 60s</p>
+           <p>There is a penalty of 10s for wrong answer!!!</p>
+            
+        </div>
+        
         <div id="start">Start Quiz</div>
+        
         <div id="quiz" style="display: none">
             <div id="question"></div>
             <div id="qImg"></div>
@@ -26,6 +38,7 @@
             <div id="progress"></div>
         </div>
         <div id="scoreContainer" style="display: none"></div>
+        
     </div>
     <script src="./assets/script/quiz.js"></script>
 </body>

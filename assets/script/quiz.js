@@ -14,6 +14,9 @@ var counter = document.getElementById("counter");
 var timeGauge = document.getElementById("timeGauge");
 var progress = document.getElementById("progress");
 var scoreDiv = document.getElementById("scoreContainer");
+var intro = document.getElementById("intro");
+var highScoreButton = document.getElementById("viewHighscore");
+var maxHighScore= 5; //Maximum number of Highscore saved
 
 
 // Now we create our question bank as objects
@@ -113,13 +116,15 @@ start.addEventListener("click", startQuiz); // IT ALL STARTS HERE !!!
 // start quiz (Let the quiz begin)
 function startQuiz() {
 
+    intro.style.display = "none";
+    highScoreButton.style.display = "none";
     start.style.display = "none";
     renderQuestion();
     quiz.style.display = "block";
     renderProgress();
     renderCounter();
     TIMER = setInterval(function () {
-        console.log(questionTime);
+        //console.log(questionTime);
         questionTime--
         renderCounter();
         if (questionTime === 0) {
@@ -204,7 +209,7 @@ function answerIsWrong() {
     document.getElementById(runningQuestion).style.backgroundColor = "#f00"; // The progress circle becomes red
 }
 
-// Score render
+// Score render and Saving the score in local storage
 function scoreRender() {
     scoreDiv.style.display = "block";
 
@@ -221,31 +226,77 @@ function scoreRender() {
     scoreDiv.innerHTML = "<img src=" + img + ">";
     scoreDiv.innerHTML += "<p> Your Score: " + scorePerCent + "</p>";
 
-    //
+    //Enter your Initial Label
     var createLabel = document.createElement("label");
     createLabel.setAttribute("id", "createLabel");
     createLabel.textContent = "Enter your initials: ";
-   
+
     scoreDiv.append(createLabel);
-   
-    // input
+
+    // Input Window
     var createInput = document.createElement("input");
     createInput.setAttribute("type", "text");
     createInput.setAttribute("id", "initials");
     createInput.textContent = "";
-   
+
     scoreDiv.append(createInput);
-   
-    // submit
+
+    // Submit Section
     var createSubmit = document.createElement("button");
     createSubmit.setAttribute("type", "submit");
     createSubmit.setAttribute("id", "Submit");
     createSubmit.textContent = "Submit";
-   
+
     scoreDiv.append(createSubmit);
+
+    // SAVE score to local storage
+    createSubmit.addEventListener("click", function () {
+        
+        var initials = createInput.value;
+        
+        if (initials === null) {
+
+            //console.log("No value entered!");
+
+        } else {
+            var finalScore = {
+                initials: initials,
+                score: scorePerCent,
+            }
+            
+            // console.log(finalScore);
+
+            var allScores = localStorage.getItem("allScores");
+
+           
+            if (allScores === null) {
+                allScores = [];
+                
+            } else {
+                allScores = JSON.parse(allScores);
+                
+            }
+              
+            
+            allScores.push(finalScore);
+            allScores.sort((a, b) => b.finalScore - a.finalScore); 
+            allScores.splice(5); //Keeping only top 5 Result
+            
+          
+
+            var newScore = JSON.stringify(allScores);
+            
+            localStorage.setItem("allScores", newScore);
+
+            
+
+            // After submit takes to Highscore page
+            window.location.replace("./Highscore.html");
+        }
+    });
 }
 
- 
 
- 
+
+
 
