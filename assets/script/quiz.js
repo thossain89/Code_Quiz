@@ -220,4 +220,32 @@ function scoreRender() {
 
     scoreDiv.innerHTML = "<img src=" + img + ">";
     scoreDiv.innerHTML += "<p> Your Score: " + scorePerCent + "</p>";
+
+    //
+    var createLabel = document.createElement("label");
+    createLabel.setAttribute("id", "createLabel");
+    createLabel.textContent = "Enter your initials: ";
+   
+    scoreDiv.append(createLabel);
+   
+    // input
+    var createInput = document.createElement("input");
+    createInput.setAttribute("type", "text");
+    createInput.setAttribute("id", "initials");
+    createInput.textContent = "";
+   
+    scoreDiv.append(createInput);
+   
+    // submit
+    var createSubmit = document.createElement("button");
+    createSubmit.setAttribute("type", "submit");
+    createSubmit.setAttribute("id", "Submit");
+    createSubmit.textContent = "Submit";
+   
+    scoreDiv.append(createSubmit);
 }
+
+ 
+
+ 
+

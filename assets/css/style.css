@@ -127,7 +127,7 @@ body{
 #scoreContainer{
     margin : 20px auto;
     background-color: white;
-    opacity: 0.8;
+    opacity: 0.97;
     height: 500px;
     width : 700px;
     border-radius: 5px;
@@ -138,18 +138,46 @@ body{
 #scoreContainer img{
     position: absolute;
     top:100px;
-    left:325px;
+    left:300px;
 }
 #scoreContainer p{
     position: absolute;
     display: block;
-    width : 59px;
     height :59px;
     top:170px;
-    left:330px;
+    left:200px;
     font-size: 1.5em;
     font-weight: bold;
     text-align: center;
+}
+#createLabel {
+    position: absolute;
+    display: block;
+    height: 59px;
+    top: 210px;
+    left: 170px;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+#initials{
+    position: absolute;
+    display: block;
+    top: 260px;
+    left: 215px;
+}
+
+#Submit{
+    position: absolute;
+    display: block;
+    top: 310px;
+    left: 300px
+}
+
+#Submit:hover {
+    border : 2px solid grey;
+    font-weight: bold;
 }
 
 
