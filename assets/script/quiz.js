@@ -16,7 +16,7 @@ var progress = document.getElementById("progress");
 var scoreDiv = document.getElementById("scoreContainer");
 var intro = document.getElementById("intro");
 var highScoreButton = document.getElementById("viewHighscore");
-var maxHighScore= 5; //Maximum number of Highscore saved
+
 
 
 // Now we create our question bank as objects
@@ -251,44 +251,37 @@ function scoreRender() {
 
     // SAVE score to local storage
     createSubmit.addEventListener("click", function () {
-        
-        var initials = createInput.value;
-        
-        if (initials === null) {
 
+        var initials = createInput.value;
+
+        if (initials === null) {
             //console.log("No value entered!");
 
         } else {
             var finalScore = {
                 initials: initials,
                 score: scorePerCent,
-            }
-            
-            // console.log(finalScore);
+            }           
 
             var allScores = localStorage.getItem("allScores");
 
-           
             if (allScores === null) {
                 allScores = [];
-                
+
             } else {
                 allScores = JSON.parse(allScores);
-                
+
             }
-              
-            
             allScores.push(finalScore);
-            allScores.sort((a, b) => b.finalScore - a.finalScore); 
-            allScores.splice(5); //Keeping only top 5 Result
-            
-          
+            // Sort Highscore decending order
+
+            allScores.sort(function (a, b) {
+                return b.score - a.score;
+            });
 
             var newScore = JSON.stringify(allScores);
-            
-            localStorage.setItem("allScores", newScore);
 
-            
+            localStorage.setItem("allScores", newScore);
 
             // After submit takes to Highscore page
             window.location.replace("./Highscore.html");
